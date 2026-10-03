@@ -16,6 +16,7 @@ data class IslandHotkeyCondition(
     override val text: String = "Islands"
     override val codec: MapCodec<out HotkeyCondition> = SkyOceanCodecs.IslandHotkeyConditionCodec
     override val type: HotkeyConditionType = HotkeyConditionType.ISLAND
+    override fun describe() = "Island: ${islands.joinToString { it.name }}"
 
     override fun data(): MutableSet<SkyBlockIsland> = islands
     override fun possibilities(): List<SkyBlockIsland> = SkyBlockIsland.entries

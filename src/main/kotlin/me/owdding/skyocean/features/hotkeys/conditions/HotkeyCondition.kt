@@ -15,6 +15,7 @@ interface HotkeyCondition {
     val codec: MapCodec<out HotkeyCondition>
     val type: HotkeyConditionType
     fun test(): Boolean
+    fun describe(): String
 
     operator fun invoke() = test()
 
@@ -56,6 +57,7 @@ data object HotkeyConditions {
         idMapper.put("dungeon_class", SkyOceanCodecs.DungeonClassHotkeyConditionCodec)
         idMapper.put("mayor_perk", SkyOceanCodecs.MayorPerkHotkeyConditionCodec)
         idMapper.put("garden_plot", SkyOceanCodecs.GardenPlotHotkeyConditionCodec)
+        idMapper.put("held_item", SkyOceanCodecs.HeldItemHotkeyConditionCodec)
     }
 }
 
@@ -70,4 +72,5 @@ enum class HotkeyConditionType(val builder: (() -> HotkeyCondition)? = null, val
     DUNGEON_CLASS(builder = ::DungeonClassHotkeyCondition),
     MAYOR_PERK(builder = ::MayorPerkHotkeyCondition),
     GARDEN_PLOT(builder = ::GardenPlotHotkeyCondition),
+    HELD_ITEM(builder = ::HeldItemHotkeyCondition),
 }

@@ -20,6 +20,7 @@ data class NotHotkeyCondition(
 ) : HotkeyCondition {
     override val codec: MapCodec<out HotkeyCondition> = SkyOceanCodecs.NotHotkeyConditionCodec
     override val type: HotkeyConditionType = HotkeyConditionType.NOT
+    override fun describe() = "Not (${child.describe()})"
 
     override fun test(): Boolean = !child.test()
 

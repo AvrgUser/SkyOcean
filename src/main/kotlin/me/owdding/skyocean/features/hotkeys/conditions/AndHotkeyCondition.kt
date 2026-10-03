@@ -26,6 +26,7 @@ data class AndHotkeyCondition(
 ) : HotkeyCondition {
     override val codec: MapCodec<out HotkeyCondition> = SkyOceanCodecs.AndHotkeyConditionCodec
     override val type: HotkeyConditionType = HotkeyConditionType.AND
+    override fun describe() = conditions.joinToString(" and ", "(", ")") { it.describe() }
 
     override fun test(): Boolean = conditions.all { it.test() }
 

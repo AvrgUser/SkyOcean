@@ -26,6 +26,7 @@ data class OrHotkeyCondition(
 ) : HotkeyCondition {
     override val codec: MapCodec<out HotkeyCondition> = SkyOceanCodecs.OrHotkeyConditionCodec
     override val type: HotkeyConditionType = HotkeyConditionType.OR
+    override fun describe() = conditions.joinToString(" or ", "(", ")") { it.describe() }
 
     override fun test(): Boolean = conditions.any { it.test() }
 

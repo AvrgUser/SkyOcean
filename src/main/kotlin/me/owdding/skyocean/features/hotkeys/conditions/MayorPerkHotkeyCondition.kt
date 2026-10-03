@@ -16,6 +16,7 @@ data class MayorPerkHotkeyCondition(
     override val text: String = "Mayor Perks"
     override val codec: MapCodec<out HotkeyCondition> = SkyOceanCodecs.MayorPerkHotkeyConditionCodec
     override val type: HotkeyConditionType = HotkeyConditionType.MAYOR_PERK
+    override fun describe() = "Mayor perk: ${perks.joinToString { it.perkName }}"
 
     override fun data(): MutableSet<MayorPerk> = perks
     override fun possibilities(): List<MayorPerk> = MayorPerks.perks.toList()

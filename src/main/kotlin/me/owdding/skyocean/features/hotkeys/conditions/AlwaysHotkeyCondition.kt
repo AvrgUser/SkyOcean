@@ -9,6 +9,7 @@ import net.minecraft.client.gui.layouts.LayoutElement
 data object AlwaysHotkeyCondition : HotkeyCondition {
     override val codec: MapCodec<out HotkeyCondition> = MapCodec.unit { AlwaysHotkeyCondition }
     override val type: HotkeyConditionType = HotkeyConditionType.ALWAYS
+    override fun describe() = "Always"
 
     override fun test(): Boolean = true
     override fun duplicate(): HotkeyCondition = this // immutable, so it doesn't matter

@@ -17,6 +17,7 @@ data class DungeonFloorHotkeyCondition(
     override val text: String = "Dungeon Floors"
     override val codec: MapCodec<out HotkeyCondition> = SkyOceanCodecs.DungeonFloorHotkeyConditionCodec
     override val type: HotkeyConditionType = HotkeyConditionType.DUNGEON_FLOOR
+    override fun describe() = "Dungeon floor: ${floors.joinToString { it.name }}"
 
     override fun data(): MutableSet<DungeonFloor> = floors
     override fun possibilities(): List<DungeonFloor> = DungeonFloor.entries
@@ -33,6 +34,7 @@ data class DungeonClassHotkeyCondition(
     override val text: String = "Dungeon Classes"
     override val codec: MapCodec<out HotkeyCondition> = SkyOceanCodecs.DungeonClassHotkeyConditionCodec
     override val type: HotkeyConditionType = HotkeyConditionType.DUNGEON_CLASS
+    override fun describe() = "Dungeon class: ${classes.joinToString { it.name }}"
 
     override fun data(): MutableSet<DungeonClass> = classes
     override fun possibilities(): List<DungeonClass> = DungeonClass.entries

@@ -13,6 +13,7 @@ import tech.thatgravyboat.skyblockapi.utils.text.Text.asComponent
 data class GardenPlotHotkeyCondition(@Compact val plots: MutableSet<PlotId> = mutableSetOf()) : SelectHotkeyCondition<GardenPlotHotkeyCondition.PlotId> {
     override val codec: MapCodec<out HotkeyCondition> = SkyOceanCodecs.getMapCodec<GardenPlotHotkeyCondition>()
     override val type: HotkeyConditionType get() = HotkeyConditionType.GARDEN_PLOT
+    override fun describe() = "Garden plot: ${plots.joinToString { it.name }}"
     override val text: String get() = "Garden Plot"
 
     override fun test() = plots.any { it.isInPlot() }

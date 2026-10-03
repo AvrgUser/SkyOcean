@@ -9,9 +9,6 @@ import me.owdding.skyocean.config.features.hotkey.HotkeyConfig
 import me.owdding.skyocean.features.hotkeys.system.Hotkey
 import me.owdding.skyocean.features.hotkeys.system.HotkeyCategory
 import me.owdding.skyocean.features.hotkeys.system.HotkeyManager
-import me.owdding.skyocean.features.text.MoveTextReplacementModal
-import me.owdding.skyocean.features.text.TextReplacementManager
-import me.owdding.skyocean.features.text.TextReplacementScreen
 import me.owdding.skyocean.utils.SkyOceanScreen
 import me.owdding.skyocean.utils.chat.CatppuccinColors
 import me.owdding.skyocean.utils.chat.ChatUtils
@@ -43,13 +40,6 @@ import tech.thatgravyboat.skyblockapi.utils.text.TextStyle.font
 import tech.thatgravyboat.skyblockapi.utils.text.TextStyle.underlined
 import kotlin.math.max
 
-/**
- * todo for next release
- *  - implement KeyMapping action
- *  - Maybe add rconfig toggle action?
- *  - Condition builder string representation
- *  - Held item condition (probably with extra item conditions??)
- */
 object ConditionalHotkeyScreen : SkyOceanScreen("Island Specific Keybinds"), IgnoreHotkeyInputs {
 
     val FONT = SkyOcean.id("hotkey_screen")
@@ -430,6 +420,9 @@ object ConditionalHotkeyScreen : SkyOceanScreen("Island Specific Keybinds"), Ign
             vertical {
                 createText(hotkey.name) {
                     color = CatppuccinColors.Mocha.text
+                }.withPadding(bottom = 2).add()
+                createText(hotkey.condition.describe()) {
+                    color = CatppuccinColors.Mocha.subtext0
                 }.withPadding(bottom = 2).add()
                 createText(keyComponent).withPadding(4).withTexturedBackground("hotkey/header").add()
             }
