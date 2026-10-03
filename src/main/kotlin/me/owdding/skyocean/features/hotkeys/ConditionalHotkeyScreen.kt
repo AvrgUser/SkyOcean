@@ -40,6 +40,10 @@ import tech.thatgravyboat.skyblockapi.utils.text.TextStyle.font
 import tech.thatgravyboat.skyblockapi.utils.text.TextStyle.underlined
 import kotlin.math.max
 
+/**
+ * todo for next release
+ *  - Maybe add rconfig toggle action?
+ */
 object ConditionalHotkeyScreen : SkyOceanScreen("Island Specific Keybinds"), IgnoreHotkeyInputs {
 
     val FONT = SkyOcean.id("hotkey_screen")
