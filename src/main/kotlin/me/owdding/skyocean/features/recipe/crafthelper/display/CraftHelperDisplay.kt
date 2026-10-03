@@ -64,7 +64,6 @@ object CraftHelperDisplay : MeowddingLogger by SkyOcean.featureLogger() {
         val screen = event.screen as? AbstractContainerScreen<*> ?: return
 
         val layout = LayoutFactory.empty() as FrameLayout
-        lateinit var callback: (save: Boolean) -> Unit
 
         // - CraftHelperConfig.margin * 2 (customizable left/right margin)
         // - BACKGROUND_PADDING * 2 (Background padding)
@@ -73,12 +72,14 @@ object CraftHelperDisplay : MeowddingLogger by SkyOcean.featureLogger() {
         fun resetLayout() {
             layout.visitWidgets { event.widgets.remove(it) }
         }
-        callback = callback@{ save ->
-            val tree = CraftHelperManager.resolve(::resetLayout, CraftHelperManager::clear) ?: return@callback
+
+        fun callback(save: Boolean) {
+            val tree = CraftHelperManager.resolve(::resetLayout, CraftHelperManager::clear) ?: return
+
             val output = tree.output
             resetLayout()
             layout.tryClear()
-            layout.addChild(visualize(tree, output, maxAvailableWidth) { callback })
+            layout.addChild(visualize(tree, output, maxAvailableWidth, ::callback))
             layout.arrangeElements()
             layout.setPosition(CraftHelperConfig.position.position(layout.width, layout.height))
             layout.visitWidgets { event.widgets.add(it) }
@@ -101,10 +102,14 @@ object CraftHelperDisplay : MeowddingLogger by SkyOcean.featureLogger() {
     }
 
     @Suppress("LongMethod")
-    private fun visualize(tree: CraftHelperTree, output: ItemLikeIngredient, maxWidth: Int, callback: () -> ((save: Boolean) -> Unit)): AbstractWidget {
+    private fun visualize(
+        tree: CraftHelperTree,
+        output: ItemLikeIngredient,
+        maxWidth: Int,
+        callback: (save: Boolean) -> Unit,
+    ): AbstractWidget {
         val sources = ItemSources.craftHelperSources - CraftHelperConfig.disallowedSources.toSet()
         val tracker = ItemTracker(sources)
-        val callback = callback()
 
         return LayoutFactory.vertical(2) {
             var maxLine = 0

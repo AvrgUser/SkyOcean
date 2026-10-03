@@ -113,7 +113,7 @@ class EditHotkeyModal(
         val action = action
         val state = ListenableState.of(HotkeyActionType.NONE)
         val dropdownState = DropdownState(null, state, false)
-        val dropdown = widgetContext.createActionDropdown(dropdownState)
+        widgetContext.createActionDropdown(dropdownState)
         val callback: (HotkeyAction) -> Unit = {
             this@EditHotkeyModal.action = it
             rebuildWidgets()

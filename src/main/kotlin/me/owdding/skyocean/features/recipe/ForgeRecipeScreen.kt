@@ -107,9 +107,15 @@ class ForgeRecipeScreen(input: String) : ClientSideInventory("Forge", 6) {
             add(23, Items.CLOCK) {
                 add("Time: ") {
                     color = TextColor.GREEN
-
-                    append("${recipe?.time()?.seconds?.toReadableTime()}") {
-                        color = TextColor.YELLOW
+                    val text = recipe?.time()?.seconds?.toReadableTime()
+                    if (text != null) {
+                        append(text) {
+                            color = TextColor.YELLOW
+                        }
+                    } else {
+                        append("Unknown") {
+                            color = TextColor.RED
+                        }
                     }
                 }
             }

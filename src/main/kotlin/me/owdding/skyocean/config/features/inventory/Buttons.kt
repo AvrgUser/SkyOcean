@@ -65,7 +65,7 @@ class ButtonConfig(
     var regex = Regex(titleName)
         private set
 
-    var item by observable(string(itemName)) { _, new ->
+    var item by observable(string(itemName)) { _, _ ->
         itemStackDelegate.invalidate()
     }
     var command by string(commandName)
