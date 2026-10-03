@@ -3,6 +3,7 @@ package me.owdding.skyocean.features.inventory.buttons
 import com.teamresourceful.resourcefullib.common.color.Color
 import earth.terrarium.olympus.client.components.Widgets
 import earth.terrarium.olympus.client.components.buttons.Button
+import earth.terrarium.olympus.client.components.renderers.TextWidgetRenderer
 import earth.terrarium.olympus.client.components.renderers.WidgetRenderers
 import earth.terrarium.olympus.client.components.string.TextWidget
 import earth.terrarium.olympus.client.components.textbox.TextBox
@@ -26,7 +27,7 @@ import tech.thatgravyboat.skyblockapi.helpers.McPlayer
 import tech.thatgravyboat.skyblockapi.utils.extentions.left
 import tech.thatgravyboat.skyblockapi.utils.extentions.top
 
-class ButtonConfigScreen(val previousScreen: Screen?) : InventoryScreen(McPlayer.self) {
+class ButtonConfigScreen(val previousScreen: Screen?) : InventoryScreen(McPlayer.self!!) {
 
     var selectedButtonIndex = -1
     private var selectedButton: ButtonConfig? = null
@@ -40,8 +41,8 @@ class ButtonConfigScreen(val previousScreen: Screen?) : InventoryScreen(McPlayer
     val titleWidget: TextBox = Widgets.textInput(titleState)
     val tooltipState: State<String> = State.of("")
     val tooltipWidget: TextBox = Widgets.textInput(tooltipState)
-    val disableRenderer = WidgetRenderers.text<Button>(+"skyocean.inventory.buttons.disable").withColor(Color(0xFF0000))
-    val enableRenderer = WidgetRenderers.text<Button>(+"skyocean.inventory.buttons.enable").withColor(Color(0x00FF00))
+    val disableRenderer: TextWidgetRenderer<Button> = WidgetRenderers.text<Button>(+"skyocean.inventory.buttons.disable").withColor(Color(0xFF0000))
+    val enableRenderer: TextWidgetRenderer<Button> = WidgetRenderers.text<Button>(+"skyocean.inventory.buttons.enable").withColor(Color(0x00FF00))
     val disableButton: Button = Widgets.button().withRenderer(disableRenderer)
     val resetButton: Button = Widgets.button().withRenderer(WidgetRenderers.text(+"skyocean.inventory.buttons.reset"))
 

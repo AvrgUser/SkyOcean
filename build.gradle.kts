@@ -58,7 +58,6 @@ tasks.withType<KotlinCompile>().configureEach {
     compilerOptions.extraWarnings = true
     compilerOptions.freeCompilerArgs.addAll(
         "-Xcontext-sensitive-resolution",
-        "-Xnullability-annotations=@org.jspecify.annotations:warn"
     )
 }
 
